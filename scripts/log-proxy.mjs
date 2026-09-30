@@ -1,10 +1,10 @@
 import http from "node:http"
 import fs from "node:fs"
 
-const PORT = Number(process.env.OPENCODE_LEAN_PROXY_PORT ?? 18077)
-const UPSTREAM = process.env.OPENCODE_LEAN_PROXY_UPSTREAM ?? "http://192.168.2.56:8077/v1"
-const LOG_FILE = process.env.OPENCODE_LEAN_PROXY_LOG_FILE ?? "/tmp/opencode-proxy-requests.txt"
-const LOG_RESPONSE = process.env.OPENCODE_LEAN_PROXY_LOG_RESPONSE === "1"
+const PORT = Number(process.env.OPENCODE_LEANER_PROXY_PORT ?? 18077)
+const UPSTREAM = process.env.OPENCODE_LEANER_PROXY_UPSTREAM ?? "http://192.168.2.56:8077/v1"
+const LOG_FILE = process.env.OPENCODE_LEANER_PROXY_LOG_FILE ?? "/tmp/opencode-proxy-requests.txt"
+const LOG_RESPONSE = process.env.OPENCODE_LEANER_PROXY_LOG_RESPONSE === "1"
 
 const server = http.createServer(async (req, res) => {
   const chunks = []

@@ -37,7 +37,7 @@ const PLUGIN_AGENTS: Record<string, Record<string, unknown>> = Object.fromEntrie
 )
 
 function agentID(name: string): string {
-  const prefix = (process.env.OPENCODE_LEAN_AGENT_PREFIX ?? "").trim()
+  const prefix = (process.env.OPENCODE_LEANER_AGENT_PREFIX ?? "").trim()
   return prefix ? `${prefix}-${name}` : name
 }
 
@@ -84,6 +84,6 @@ const server = async (_input: unknown) => {
 }
 
 export default {
-  id: "opencode-lean",
+  id: "opencode-leaner",
   server,
 }

@@ -1,6 +1,6 @@
 
 ## Project
-`opencode-lean` (package `opencode-lean`) is an opencode plugin that help you reduce the context size, making it lean and more efficient.
+`opencode-leaner` (package `opencode-leaner`) is an opencode plugin that help you reduce the context size, making it lean and more efficient.
 
 ## Stack
 - TypeScript, run with Bun

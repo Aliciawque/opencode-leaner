@@ -1,6 +1,6 @@
-# opencode-lean
+# opencode-leaner
 
-![opencode-lean](src/assets/opencode-lean.jpeg)
+![opencode-leaner](src/assets/opencode-leaner.jpeg)
 
 An [opencode](https://opencode.ai) plugin that reduces the context sent to the model — shorter tool descriptions and lean agent definitions (some of them are more like experiments).
 
@@ -39,13 +39,13 @@ Base Build agent in the same enviroment uses ~10,300 tokens.
 
 If an agent with the same id already exists in your config, the plugin's definition is deep-merged over it (your config wins on conflict).
 
-Set `OPENCODE_LEAN_AGENT_PREFIX` surpass the conflicts name, e.g. `OPENCODE_LEAN_AGENT_PREFIX=lean` inject `lean-bash` instead of `bash`.
+Set `OPENCODE_LEANER_AGENT_PREFIX` surpass the conflicts name, e.g. `OPENCODE_LEANER_AGENT_PREFIX=lean` inject `lean-bash` instead of `bash`.
 
 ## Install
 
 ```sh
-git clone <repo-url> opencode-lean
-cd opencode-lean
+git clone <repo-url> opencode-leaner
+cd opencode-leaner
 bun install
 ```
 
@@ -53,7 +53,7 @@ Register the plugin in your opencode config (e.g. `opencode.json`), pointing at 
 
 ```json
 {
-  "plugin": ["file:///absolute/path/to/opencode-lean/index.ts"]
+  "plugin": ["file:///absolute/path/to/opencode-leaner/index.ts"]
 }
 ```
 
@@ -71,7 +71,7 @@ There is no test suite yet; validate by loading the plugin in opencode and inspe
 
 ### Debug context
 
-With `OPENCODE_LEAN_DEBUG_CONTEXT=1`, the plugin appends the outgoing messages, system prompt, chat params, and headers for every request to a file (default: `/tmp/opencode-context-debug.txt`), so you can inspect offline what was actually sent to the model.
+With `OPENCODE_LEANER_DEBUG_CONTEXT=1`, the plugin appends the outgoing messages, system prompt, chat params, and headers for every request to a file (default: `/tmp/opencode-context-debug.txt`), so you can inspect offline what was actually sent to the model.
 
 ### Log proxy
 
@@ -83,13 +83,13 @@ All options are environment variables read by the plugin (and the log proxy):
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `OPENCODE_LEAN_AGENT_PREFIX` | _(empty)_ | Prefix added to injected agent ids, e.g. `lean-bash` |
-| `OPENCODE_LEAN_DEBUG_CONTEXT` | _(off)_ | Set to `1` to dump outgoing context to a file |
-| `OPENCODE_LEAN_DEBUG_CONTEXT_PATH` | `/tmp/opencode-context-debug.txt` | Output file for the debug context dump |
-| `OPENCODE_LEAN_PROXY_PORT` | `18077` | Port for the log proxy |
-| `OPENCODE_LEAN_PROXY_UPSTREAM` | `http://192.168.2.56:8077/v1` | Upstream base URL the proxy forwards to |
-| `OPENCODE_LEAN_PROXY_LOG_FILE` | `/tmp/opencode-proxy-requests.txt` | Log file for the proxy |
-| `OPENCODE_LEAN_PROXY_LOG_RESPONSE` | _(off)_ | Set to `1` to also log response bodies |
+| `OPENCODE_LEANER_AGENT_PREFIX` | _(empty)_ | Prefix added to injected agent ids, e.g. `lean-bash` |
+| `OPENCODE_LEANER_DEBUG_CONTEXT` | _(off)_ | Set to `1` to dump outgoing context to a file |
+| `OPENCODE_LEANER_DEBUG_CONTEXT_PATH` | `/tmp/opencode-context-debug.txt` | Output file for the debug context dump |
+| `OPENCODE_LEANER_PROXY_PORT` | `18077` | Port for the log proxy |
+| `OPENCODE_LEANER_PROXY_UPSTREAM` | `http://192.168.2.56:8077/v1` | Upstream base URL the proxy forwards to |
+| `OPENCODE_LEANER_PROXY_LOG_FILE` | `/tmp/opencode-proxy-requests.txt` | Log file for the proxy |
+| `OPENCODE_LEANER_PROXY_LOG_RESPONSE` | _(off)_ | Set to `1` to also log response bodies |
 
 ## License
 
