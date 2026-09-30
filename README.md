@@ -43,6 +43,18 @@ Set `OPENCODE_LEANER_AGENT_PREFIX` surpass the conflicts name, e.g. `OPENCODE_LE
 
 ## Install
 
+### Npm package
+
+Register the plugin in your opencode config (e.g. `opencode.json`):
+
+```json
+{
+  "plugin": ["opencode-leaner"]
+}
+```
+
+### Manual
+
 ```sh
 git clone <repo-url> opencode-leaner
 cd opencode-leaner
