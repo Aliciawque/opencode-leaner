@@ -1,11 +1,11 @@
-import { readTool } from "./src/read"
-import { grepTool } from "./src/grep"
-import { globTool } from "./src/glob"
-import { writeTool } from "./src/write"
-import { editTool } from "./src/edit"
-import { webfetchTool } from "./src/webfetch"
-import { trimShellDescription } from "./src/descriptions"
-import TODOWRITE_DESCRIPTION from "./src/todowrite.txt"
+import { readTool } from "./src/tools/read"
+import { grepTool } from "./src/tools/grep"
+import { globTool } from "./src/tools/glob"
+import { writeTool } from "./src/tools/write"
+import { editTool } from "./src/tools/edit"
+import { webfetchTool } from "./src/tools/webfetch"
+import { trimShellDescription } from "./src/tools/descriptions"
+import TODOWRITE_DESCRIPTION from "./src/tools/todowrite.txt"
 
 const server = async () => ({
   tool: {
