@@ -1,0 +1,11 @@
+Create and maintain a structured task list for the current coding session. Tracks progress, organizes multi-step work, and surfaces status to the user.
+
+Use proactively when the task requires multiple distinct steps, benefits from planning, or the user provides multiple tasks. Skip it for single straightforward tasks and purely informational requests.
+
+Rules:
+- Update status in real time; don't batch completions
+- Mark `completed` only after the required work is actually done, including any required verification. Never based on intent.
+- Keep exactly one `in_progress` while work remains
+- If blocked or partial, keep it `in_progress` and add a follow-up todo describing the blocker
+- Preserve user-provided commands verbatim (flags, args, order)
+- Items should be specific and actionable; break large work into smaller steps

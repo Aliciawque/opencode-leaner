@@ -1,0 +1,18 @@
+{
+  "name": "opencode-lean",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "opencode plugin that mirrors the builtin file/search tools with leaner definitions",
+  "dependencies": {
+    "diff": "8.0.2",
+    "htmlparser2": "8.0.2",
+    "turndown": "7.2.0",
+    "zod": "4.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/turndown": "5.0.5",
+    "typescript": "^5.9.0"
+  }
+}
