@@ -36,6 +36,11 @@ const PLUGIN_AGENTS: Record<string, Record<string, unknown>> = Object.fromEntrie
   }),
 )
 
+function agentID(name: string): string {
+  const prefix = (process.env.OPENCODE_LEAN_AGENT_PREFIX ?? "").trim()
+  return prefix ? `${prefix}-${name}` : name
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value)
 }
@@ -59,7 +64,8 @@ const server = async (_input: unknown) => {
     config: (cfg: MergedConfig) => {
       const agents = { ...cfg.agent }
       for (const [name, def] of Object.entries(PLUGIN_AGENTS)) {
-        agents[name] = deepMerge(def, agents[name])
+        const id = agentID(name)
+        agents[id] = deepMerge(def, agents[id])
       }
       cfg.agent = agents
     },
