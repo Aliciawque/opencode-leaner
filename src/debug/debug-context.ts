@@ -1,5 +1,3 @@
-type PluginOptions = Record<string, unknown>
-
 type ModelInfo = {
   providerID: string
   id: string
@@ -41,11 +39,11 @@ export type DebugContextHooks = {
 /**
  * When OPENCODE_LEAN_DEBUG_CONTEXT=1, appends the outgoing messages, system prompt,
  * params, and headers to a file for offline inspection.
- * File path comes from the plugin option `path`, defaulting to
+ * File path is set via OPENCODE_LEAN_DEBUG_CONTEXT_PATH, defaulting to
  * /tmp/opencode-context-debug.txt.
  */
-export const DebugContextPlugin: (input: unknown, options?: PluginOptions) => Promise<DebugContextHooks> = async (_input, options) => {
-  const file = typeof options?.path === "string" ? options.path : "/tmp/opencode-context-debug.txt"
+export const DebugContextPlugin: (input: unknown) => Promise<DebugContextHooks> = async (_input) => {
+  const file = process.env.OPENCODE_LEAN_DEBUG_CONTEXT_PATH ?? "/tmp/opencode-context-debug.txt"
 
   const json = (v: unknown): string => {
     try {

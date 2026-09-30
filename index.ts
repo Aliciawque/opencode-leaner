@@ -53,8 +53,8 @@ type MergedConfig = {
   agent?: Record<string, unknown>
 }
 
-const server = async (_input: unknown, options?: Record<string, unknown>) => {
-  const debugContext = await DebugContextPlugin(_input, options)
+const server = async (_input: unknown) => {
+  const debugContext = await DebugContextPlugin(_input)
   return {
     config: (cfg: MergedConfig) => {
       const agents = { ...cfg.agent }
