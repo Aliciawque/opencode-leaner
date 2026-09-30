@@ -8,6 +8,7 @@ import EDIT_DESCRIPTION from "./src/tools/edit.txt"
 import WEBFETCH_DESCRIPTION from "./src/tools/webfetch.txt"
 import TODOWRITE_DESCRIPTION from "./src/tools/todowrite.txt"
 import { parseAgent } from "./src/agents/parse"
+import { DebugContextPlugin } from "./src/debug/debug-context"
 
 const DESCRIPTIONS: Record<string, string> = {
   read: READ_DESCRIPTION,
@@ -52,25 +53,29 @@ type MergedConfig = {
   agent?: Record<string, unknown>
 }
 
-const server = async () => ({
-  config: (cfg: MergedConfig) => {
-    const agents = { ...cfg.agent }
-    for (const [name, def] of Object.entries(PLUGIN_AGENTS)) {
-      agents[name] = deepMerge(def, agents[name])
-    }
-    cfg.agent = agents
-  },
-  "tool.definition": async (input: { toolID: string }, output: { description: string; parameters: unknown }) => {
-    if (input.toolID === "bash") {
-      output.description = trimShellDescription(output.description)
-      return
-    }
-    const description = DESCRIPTIONS[input.toolID]
-    if (description !== undefined) {
-      output.description = description
-    }
-  },
-})
+const server = async (_input: unknown, options?: Record<string, unknown>) => {
+  const debugContext = await DebugContextPlugin(_input, options)
+  return {
+    config: (cfg: MergedConfig) => {
+      const agents = { ...cfg.agent }
+      for (const [name, def] of Object.entries(PLUGIN_AGENTS)) {
+        agents[name] = deepMerge(def, agents[name])
+      }
+      cfg.agent = agents
+    },
+    "tool.definition": async (input: { toolID: string }, output: { description: string; parameters: unknown }) => {
+      if (input.toolID === "bash") {
+        output.description = trimShellDescription(output.description)
+        return
+      }
+      const description = DESCRIPTIONS[input.toolID]
+      if (description !== undefined) {
+        output.description = description
+      }
+    },
+    ...debugContext,
+  }
+}
 
 export default {
   id: "opencode-lean",
